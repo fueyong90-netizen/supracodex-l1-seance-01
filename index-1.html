@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SUPRACODEX_L1_SEANCE_01_QUIZ — SUPRACODEX-HACK</title>
+<meta name="description" content="Quiz de la Séance 1 (L1) : Apprendre à raisonner comme un informaticien.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,4 90,27 90,73 50,96 10,73 10,27' fill='%2300A88F'/%3E%3Cpolygon points='50,14 81,32 81,68 50,86 19,68 19,32' fill='%230B1F3A'/%3E%3Cpath d='M40 38 L28 50 L40 62 M60 38 L72 50 L60 62' stroke='white' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --navy:#0B1F3A; --teal:#00A88F; --amber:#F59E0B; --red:#C0392B; --green:#1E8E5A;
+  --bg:#F4F7FA; --card:#FFFFFF; --text:#1B2433; --muted:#5B6577; --line:#D6DDE8; --code:#F3F5F9;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#0A1424; --card:#12233D; --text:#E8EEF7; --muted:#9FB0C8; --line:#2A3F5F; --code:#0E1B30; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+header{background:var(--navy);color:#fff;border-bottom:4px solid var(--amber);padding:14px 16px}
+.brand{display:flex;align-items:center;gap:12px;max-width:760px;margin:0 auto}
+.brand svg{width:44px;height:44px;flex:none}
+.brand b{display:block;font-size:1.05rem;letter-spacing:.5px}
+.brand span{font-size:.8rem;color:#9FD9CF}
+main{max-width:760px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+h1{font-size:1.3rem;margin:0 0 6px;color:var(--text)}
+h2{font-size:1.05rem;margin:0 0 8px}
+p{margin:.4rem 0}
+.muted{color:var(--muted);font-size:.9rem}
+label{display:block;font-weight:600;margin-bottom:6px}
+input[type=text]{width:100%;padding:13px 14px;font-size:1rem;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}
+input[type=text]:focus{outline:none;border-color:var(--teal)}
+button,.btn{font:inherit;font-weight:700;border:0;border-radius:10px;padding:13px 18px;cursor:pointer;background:var(--teal);color:#fff;text-decoration:none;display:inline-block;text-align:center;min-height:46px}
+button.secondary,.btn.secondary{background:transparent;color:var(--text);border:2px solid var(--line)}
+button.amber{background:var(--amber);color:#1B1300}
+button:disabled,.btn.disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row > *{flex:1 1 140px}
+.res a,.res .btn{width:100%}
+.progress{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin:6px 0 12px}
+.progress i{display:block;height:100%;background:var(--teal);width:0;transition:width .25s}
+.qmeta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:.85rem;color:var(--muted)}
+.tag{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:1px 10px;font-size:.78rem;margin-right:4px}
+.qtext{font-size:1.05rem;font-weight:600;margin:10px 0}
+pre{background:var(--code);border-left:4px solid var(--teal);border-radius:8px;padding:10px 12px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem;line-height:1.45;margin:8px 0;color:var(--text)}
+.opt{display:flex;gap:12px;align-items:flex-start;border:2px solid var(--line);border-radius:12px;padding:12px;margin:8px 0;cursor:pointer;background:var(--card)}
+.opt:has(input:checked){border-color:var(--teal);background:rgba(0,168,143,.10)}
+.opt input{width:22px;height:22px;margin-top:2px;accent-color:var(--teal);flex:none}
+.nav{display:flex;gap:10px;margin-top:12px}
+.nav button{flex:1}
+.score{text-align:center}
+.big{font-size:3rem;font-weight:800;color:var(--teal);line-height:1.1}
+.fb{border-left:5px solid var(--line);padding-left:12px;margin-top:10px}
+.fb.ok{border-color:var(--green)} .fb.ko{border-color:var(--red)} .fb.part{border-color:var(--amber)}
+.pts{font-weight:700}
+.ok .pts{color:var(--green)} .ko .pts{color:var(--red)}
+details{margin:10px 0}
+summary{cursor:pointer;font-weight:700}
+.hidden{display:none !important}
+footer{max-width:760px;margin:0 auto;padding:6px 16px 28px;text-align:center;color:var(--muted);font-size:.8rem}
+.note{background:rgba(245,158,11,.12);border-left:4px solid var(--amber);border-radius:8px;padding:10px 12px;font-size:.9rem}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="50,4 90,27 90,73 50,96 10,73 10,27" fill="#00A88F"/>
+      <polygon points="50,14 81,32 81,68 50,86 19,68 19,32" fill="#0B1F3A" stroke="#F59E0B" stroke-width="2.5"/>
+      <path d="M40 38 L28 50 L40 62 M60 38 L72 50 L60 62" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="53" y1="35" x2="47" y2="65" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+    </svg>
+    <div><b>SUPRACODEX-HACK</b><span>L1 · Séance 1 · Quiz</span></div>
+  </div>
+</header>
+
+<main>
+  <!-- ÉCRAN D'ACCUEIL -->
+  <section id="screen-start">
+    <div class="card">
+      <h1>Quiz — Apprendre à raisonner comme un informaticien</h1>
+      <p class="muted">15 questions · noté sur 20 · environ 15 minutes · les réponses ne sont affichées qu'à la fin.</p>
+      <div class="note">Ce quiz teste uniquement les notions du cours de la Séance 1. Lisez d'abord le cours (PDF), prenez des notes et essayez les exercices avant de répondre.</div>
+    </div>
+
+    <div class="card res">
+      <h2>Documents de la séance</h2>
+      <div class="row">
+        <a id="link-cours" class="btn" target="_blank" rel="noopener">Ouvrir le cours (PDF)</a>
+        <a id="link-tp" class="btn secondary" target="_blank" rel="noopener">Ouvrir le TP (PDF)</a>
+      </div>
+      <p id="tp-note" class="muted hidden">Le lien du TP sera ajouté par le responsable pédagogique après l'étude du cours.</p>
+    </div>
+
+    <div class="card">
+      <label for="nom">Votre nom et prénom</label>
+      <input id="nom" type="text" autocomplete="name" placeholder="Ex. : Awa Diallo" maxlength="60">
+      <p id="nom-err" class="muted hidden" style="color:var(--red)">Veuillez saisir votre nom pour commencer.</p>
+      <div style="margin-top:14px"><button id="btn-start" style="width:100%">Commencer le quiz</button></div>
+    </div>
+  </section>
+
+  <!-- ÉCRAN QUESTION -->
+  <section id="screen-quiz" class="hidden">
+    <div class="card">
+      <div class="qmeta"><span id="q-count"></span><span id="q-answered"></span></div>
+      <div class="progress"><i id="bar"></i></div>
+      <div><span class="tag" id="q-type"></span><span class="tag" id="q-pts"></span></div>
+      <div class="qtext" id="q-text"></div>
+      <pre id="q-code" class="hidden"></pre>
+      <div id="q-opts"></div>
+      <div class="nav">
+        <button class="secondary" id="btn-prev">← Précédent</button>
+        <button id="btn-next">Suivant →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉCRAN RÉSULTAT -->
+  <section id="screen-result" class="hidden">
+    <div class="card score">
+      <p class="muted" id="r-name"></p>
+      <div class="big" id="r-score"></div>
+      <p id="r-msg"></p>
+      <div class="row" style="margin-top:12px">
+        <button id="btn-share" class="amber">Envoyer mon résultat sur WhatsApp</button>
+        <button id="btn-retry" class="secondary">Refaire le quiz</button>
+      </div>
+      <p class="muted" style="margin-top:10px">Ce quiz fonctionne dans votre navigateur : votre score n'est enregistré nulle part. Envoyez-le ou faites une capture d'écran si le responsable le demande.</p>
+    </div>
+    <div class="card res">
+      <h2>Pour réviser</h2>
+      <div class="row">
+        <a id="link-cours2" class="btn" target="_blank" rel="noopener">Relire le cours (PDF)</a>
+        <a id="link-tp2" class="btn secondary" target="_blank" rel="noopener">Ouvrir le TP (PDF)</a>
+      </div>
+    </div>
+    <h2 style="margin:18px 4px 6px">Correction détaillée</h2>
+    <div id="r-detail"></div>
+  </section>
+</main>
+
+<footer>SUPRACODEX-HACK — Apprendre, comprendre, construire et innover.<br>Responsable pédagogique : JORDAN HACKER · Logo provisoire</footer>
+
+<script>
+/* =====================================================================
+   CONFIGURATION — à modifier par le responsable pédagogique
+   ===================================================================== */
+// Cours : placez le PDF dans le même dossier que ce fichier (même nom), ou collez une URL complète.
+var LIEN_COURS = "SUPRACODEX_L1_SEANCE_01_COURS.pdf";
+// TP : laissez vide tant que le TP n'est pas publié. Exemple : "SUPRACODEX_L1_SEANCE_01_TP.pdf" ou une URL complète.
+var LIEN_TP = "";
+
+/*DATA_START*/
+var QUESTIONS = [
+ { t:"single", lvl:"Facile", pts:1, q:"Un algorithme est :",
+   o:["Un langage de programmation","Une suite finie d'instructions précises et ordonnées qui résout un problème","Un ordinateur très puissant","Un logiciel déjà installé"],
+   a:[1], e:"Un algorithme est une méthode (suite finie d'instructions précises, dans un ordre défini). Il est indépendant du langage : le programme en est la traduction." },
+ { t:"single", lvl:"Facile", pts:1, q:"Quel est le modèle de base pour analyser un problème informatique ?",
+   o:["Sorties → Entrées → Traitement","Entrées → Traitement → Sorties","Traitement → Sorties → Entrées","Variables → Types → Affectation"],
+   a:[1], e:"On identifie d'abord ce qu'on reçoit (entrées), ce qu'on fait (traitement), puis ce qu'on produit (sorties)." },
+ { t:"single", lvl:"Facile", pts:1, q:"Pour calculer la moyenne de deux notes, quelles sont les ENTRÉES ?",
+   o:["note1 et note2","La moyenne","(note1 + note2) / 2","L'affichage à l'écran"],
+   a:[0], e:"Les entrées sont les données fournies : note1 et note2. Le calcul est le traitement ; la moyenne est la sortie." },
+ { t:"single", lvl:"Facile", pts:1, q:"Quel type de données contient uniquement VRAI ou FAUX ?",
+   o:["ENTIER","REEL","CHAINE","BOOLEEN"],
+   a:[3], e:"Le type BOOLEEN n'a que deux valeurs : VRAI et FAUX. C'est le résultat d'une condition." },
+ { t:"single", lvl:"Facile", pts:1, q:"Que fait l'instruction  x ← 5  ?",
+   o:["Elle compare x et 5","Elle donne la valeur 5 à la variable x","Elle affiche 5","Elle teste si x est inférieur à 5"],
+   a:[1], e:"← est l'affectation : x reçoit la valeur 5. La comparaison s'écrit x = 5 et répond VRAI ou FAUX." },
+ { t:"multi", lvl:"Facile", pts:1, q:"Un bon algorithme est (plusieurs réponses possibles) :",
+   o:["Clair : chaque instruction n'a qu'un seul sens","Fini : il s'arrête après un nombre fini d'étapes","Écrit obligatoirement en Python","Correct : il donne le bon résultat pour les données prévues"],
+   a:[0,1,3], e:"Un algorithme doit être clair, fini, ordonné, correct et général. Il ne dépend d'aucun langage particulier." },
+ { t:"single", lvl:"Facile", pts:1, q:"Quelle est la valeur de  17 MOD 5  ?",
+   o:["3","2","12","5"],
+   a:[1], e:"MOD donne le reste de la division entière : 17 = 5 × 3 + 2. Le reste est 2 (et 17 DIV 5 = 3)." },
+ { t:"single", lvl:"Facile", pts:1, q:"Un algorithme s'exécute sans s'arrêter, mais affiche un résultat faux. De quelle erreur s'agit-il ?",
+   o:["Une erreur de syntaxe","Une erreur logique","Une erreur d'exécution","Ce n'est pas une erreur"],
+   a:[1], e:"Une erreur logique est une erreur de raisonnement : tout s'exécute, mais le résultat est faux (ex. n1 + n2 / 2 au lieu de (n1 + n2) / 2)." },
+ { t:"multi", lvl:"Moyen", pts:1.5, q:"Pour a = 7, quelles conditions sont VRAIES ?",
+   o:["a ≥ 7","a ≠ 7","(a ≥ 5) ET (a ≤ 10)","NON (a = 7)"],
+   a:[0,2], e:"a ≥ 7 est vrai (7 est égal à 7). a ≠ 7 est faux. (a ≥ 5) ET (a ≤ 10) est vrai : les deux parties sont vraies. NON (a = 7) inverse VRAI en FAUX : c'est faux." },
+ { t:"code", lvl:"Moyen", pts:1.5, q:"Que s'affiche-t-il si la variable note vaut 10 ?",
+   code:"SI note ≥ 10 ALORS\n    AFFICHER \"Admis\"\nSINON\n    AFFICHER \"Refusé\"\nFINSI",
+   o:["Admis","Refusé","Rien","Une erreur de syntaxe"],
+   a:[0], e:"10 ≥ 10 est VRAI (valeur limite incluse grâce à ≥), donc la branche ALORS s'exécute : « Admis »." },
+ { t:"sim", lvl:"Moyen", pts:1.5, q:"Simulez cet algorithme. Que s'affiche-t-il à la fin ?",
+   code:"a ← 4\nb ← a + 3\na ← b × 2\nAFFICHER a, b",
+   o:["14 et 7","8 et 7","7 et 14","14 et 4"],
+   a:[0], e:"Trace : a = 4 ; b = 4 + 3 = 7 ; a = 7 × 2 = 14. On affiche donc a = 14 et b = 7." },
+ { t:"multi", lvl:"Moyen", pts:1.5, q:"Pour tester la règle « l'étudiant est ADMIS si sa moyenne est ≥ 10 », quels tests sont pertinents ?",
+   o:["Moyenne = 10 (valeur limite)","Moyenne = 9,9 (juste en dessous de la limite)","Moyenne = 14 (valeur ordinaire)","Un seul test suffit toujours"],
+   a:[0,1,2], e:"On teste des valeurs ordinaires, des valeurs limites (10 et juste en dessous) et, quand c'est possible, des valeurs invalides. Un seul test ne suffit jamais." },
+ { t:"sim", lvl:"Difficile", pts:2, q:"Simulez cet algorithme. Que s'affiche-t-il ?",
+   code:"x ← 12\nSI x > 10 ET x < 20 ALORS\n    x ← x − 5\nSINON\n    x ← x + 5\nFINSI\nx ← x × 2\nAFFICHER x",
+   o:["14","34","24","7"],
+   a:[0], e:"x = 12 : (12 > 10) ET (12 < 20) est VRAI, donc x ← 12 − 5 = 7. Ensuite x ← 7 × 2 = 14. La branche SINON n'est pas exécutée." },
+ { t:"error", lvl:"Difficile", pts:2, q:"Cet algorithme doit trouver le plus grand des trois nombres a, b et c. Quel est son défaut ?",
+   code:"SI a > b ALORS\n    max ← a\nSINON\n    max ← b\nFINSI\nAFFICHER max",
+   o:["Erreur de syntaxe : il manque un FINSI","Erreur logique : c n'est jamais comparé (avec a=1, b=2, c=9 il affiche 2)","Erreur d'exécution : division par zéro","Aucun défaut"],
+   a:[1], e:"La syntaxe est correcte, mais c n'est jamais utilisé : avec a = 1, b = 2, c = 9 l'algorithme affiche 2 au lieu de 9. C'est une erreur logique, détectée par un bon test." },
+ { t:"problem", lvl:"Difficile", pts:2, q:"Règle : le total = prix × quantité ; si le total est supérieur ou égal à 100, on accorde 10 % de remise. Un client achète 4 articles à 25 chacun. Combien doit-il payer ?",
+   o:["100","90","110","10"],
+   a:[1], e:"Total = 25 × 4 = 100. La condition « total ≥ 100 » est VRAIE (valeur limite incluse) : remise = 100 × 0,10 = 10, donc montant = 100 − 10 = 90." }
+];
+/*DATA_END*/
+
+/* =====================================================================
+   LOGIQUE DU QUIZ
+   ===================================================================== */
+var TYPES = { single:"Choix unique", multi:"Choix multiple", code:"Compréhension du pseudo-code", sim:"Simulation", error:"Détection d'erreur", problem:"Problème de raisonnement" };
+var LETTERS = ["A","B","C","D","E"];
+var $ = function(id){ return document.getElementById(id); };
+var answers = [], cur = 0, nom = "", finished = false;
+
+function fmt(n){ return n.toLocaleString("fr-FR", { maximumFractionDigits: 2 }); }
+function total(){ return QUESTIONS.reduce(function(s,q){ return s + q.pts; }, 0); }
+function sameSet(a, b){ return a.length === b.length && a.every(function(x){ return b.indexOf(x) !== -1; }); }
+function gained(i){ var q = QUESTIONS[i]; return sameSet(answers[i].slice().sort(), q.a.slice().sort()) ? q.pts : 0; }
+function show(id){ ["screen-start","screen-quiz","screen-result"].forEach(function(s){ $(s).classList.toggle("hidden", s !== id); }); window.scrollTo(0,0); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function setLink(el, url, disabledText){
+  if (url) { el.href = url; el.classList.remove("disabled"); el.removeAttribute("aria-disabled"); }
+  else { el.removeAttribute("href"); el.classList.add("disabled"); el.setAttribute("aria-disabled","true"); if (disabledText) el.textContent = disabledText; }
+}
+setLink($("link-cours"), LIEN_COURS); setLink($("link-cours2"), LIEN_COURS);
+setLink($("link-tp"), LIEN_TP, "TP (lien bientôt disponible)"); setLink($("link-tp2"), LIEN_TP, "TP (lien bientôt disponible)");
+if (!LIEN_TP) $("tp-note").classList.remove("hidden");
+
+function start(){
+  var v = $("nom").value.trim();
+  if (!v) { $("nom-err").classList.remove("hidden"); $("nom").focus(); return; }
+  nom = v; $("nom-err").classList.add("hidden");
+  answers = QUESTIONS.map(function(){ return []; }); cur = 0; finished = false;
+  show("screen-quiz"); render();
+}
+
+function render(){
+  var q = QUESTIONS[cur], n = QUESTIONS.length;
+  $("q-count").textContent = "Question " + (cur+1) + " sur " + n;
+  var done = answers.filter(function(a){ return a.length; }).length;
+  $("q-answered").textContent = done + " répondue(s)";
+  $("bar").style.width = ((cur+1)/n*100) + "%";
+  $("q-type").textContent = TYPES[q.t] + " · " + q.lvl;
+  $("q-pts").textContent = fmt(q.pts) + (q.pts > 1 ? " points" : " point");
+  $("q-text").textContent = q.q;
+  var pre = $("q-code");
+  if (q.code) { pre.textContent = q.code; pre.classList.remove("hidden"); } else { pre.classList.add("hidden"); }
+  var multi = q.t === "multi";
+  var html = multi ? '<p class="muted">Plusieurs réponses possibles — le point n\'est accordé que si toutes les bonnes réponses (et seulement elles) sont cochées.</p>' : "";
+  q.o.forEach(function(txt, k){
+    var checked = answers[cur].indexOf(k) !== -1 ? " checked" : "";
+    html += '<label class="opt"><input type="' + (multi ? "checkbox" : "radio") + '" name="opt" value="' + k + '"' + checked + '><span><b>' + LETTERS[k] + '.</b> ' + esc(txt) + '</span></label>';
+  });
+  $("q-opts").innerHTML = html;
+  $("q-opts").querySelectorAll("input").forEach(function(inp){
+    inp.addEventListener("change", function(){
+      var vals = [];
+      $("q-opts").querySelectorAll("input").forEach(function(i){ if (i.checked) vals.push(parseInt(i.value,10)); });
+      answers[cur] = vals;
+      $("q-answered").textContent = answers.filter(function(a){ return a.length; }).length + " répondue(s)";
+    });
+  });
+  $("btn-prev").disabled = cur === 0;
+  $("btn-next").textContent = cur === n-1 ? "Terminer le quiz ✓" : "Suivant →";
+  window.scrollTo(0,0);
+}
+
+function next(){
+  if (cur < QUESTIONS.length - 1) { cur++; render(); return; }
+  var missing = answers.map(function(a,i){ return a.length ? null : i+1; }).filter(Boolean);
+  if (missing.length && !window.confirm("Il reste " + missing.length + " question(s) sans réponse (n° " + missing.join(", ") + "). Terminer quand même ?")) return;
+  finish();
+}
+function prev(){ if (cur > 0) { cur--; render(); } }
+
+function appreciation(s){
+  if (s >= 16) return "Excellent travail ! Vous maîtrisez les bases du raisonnement algorithmique. Passez au TP.";
+  if (s >= 12) return "Bon résultat. Relisez les corrections ci-dessous, puis attaquez le TP.";
+  if (s >= 10) return "Résultat correct, mais certaines notions sont fragiles. Relisez les pages du cours concernées et refaites les exercices corrigés.";
+  return "Pas de panique : relisez le cours calmement, refaites les exercices à la main (avec des tables de traçage), puis retentez le quiz.";
+}
+
+function finish(){
+  finished = true;
+  var s = 0; QUESTIONS.forEach(function(_,i){ s += gained(i); });
+  s = Math.round(s * 100) / 100;
+  var T = total();
+  $("r-name").textContent = nom;
+  $("r-score").textContent = fmt(s) + " / " + fmt(T);
+  $("r-msg").textContent = appreciation(s / T * 20);
+  var html = "";
+  QUESTIONS.forEach(function(q, i){
+    var g = gained(i), ans = answers[i];
+    var cls = g === q.pts ? "ok" : "ko";
+    var yours = ans.length ? ans.slice().sort().map(function(k){ return LETTERS[k]; }).join(", ") : "aucune réponse";
+    var good = q.a.slice().sort().map(function(k){ return LETTERS[k]; }).join(", ");
+    html += '<div class="card"><div class="fb ' + cls + '"><p><b>Question ' + (i+1) + '</b> — <span class="pts">' + fmt(g) + ' / ' + fmt(q.pts) + ' pt</span></p><p>' + esc(q.q) + '</p>' +
+      (q.code ? '<pre>' + esc(q.code) + '</pre>' : '') +
+      '<p>Votre réponse : <b>' + yours + '</b> · Bonne réponse : <b>' + good + '</b> (' + q.a.map(function(k){ return esc(q.o[k]); }).join(" ; ") + ')</p>' +
+      '<p class="muted">' + esc(q.e) + '</p></div></div>';
+  });
+  $("r-detail").innerHTML = html;
+  show("screen-result");
+}
+
+function share(){
+  var s = $("r-score").textContent;
+  var txt = "SUPRACODEX-HACK · L1 · Séance 1 — Quiz\nParticipant : " + nom + "\nScore : " + s;
+  window.open("https://wa.me/?text=" + encodeURIComponent(txt), "_blank", "noopener");
+}
+function retry(){ show("screen-start"); }
+
+$("btn-start").addEventListener("click", start);
+$("nom").addEventListener("keydown", function(e){ if (e.key === "Enter") start(); });
+$("btn-next").addEventListener("click", next);
+$("btn-prev").addEventListener("click", prev);
+$("btn-share").addEventListener("click", share);
+$("btn-retry").addEventListener("click", retry);
+</script>
+</body>
+</html>
